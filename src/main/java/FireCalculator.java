@@ -1,5 +1,5 @@
 public class FireCalculator {
-    private static final int START_SUM = 1;
+    private static final int START_SUM = 0;
     private static final int START_DATE = 2002;
     private static final int END_DATE = 2022;
     private static final double PERCENT_START = 0;
@@ -17,7 +17,7 @@ public class FireCalculator {
         return percentMax;
     }
     private double findTestSumForPercent(int input, double percent) {
-        double testSum = 0;
+        double testSum = START_SUM;
         double percentAccumulated = percent;
         for (int date = input - START_DATE; date < END_DATE - START_DATE; date++) {
             //если 2002 год, то мы не считаем увеличение/уменьшение капитала и в этот год и инфляцию за прошлый, т.к. нет данных из предыдущего года
