@@ -27,7 +27,7 @@ public class FireCalculator {
             }
             testSum -= percentAccumulated;
             testSum += ((Constants.MOEX_RATE[date] - Constants.MOEX_RATE[date - 1]) / Constants.MOEX_RATE[date - 1])*100 - Constants.INFLATION_RATE[date - 1];
-            percentAccumulated = (percentAccumulated * (1 + Constants.INFLATION_RATE[date - 1] / 100));
+            percentAccumulated = percentAccumulated + percentAccumulated * Constants.INFLATION_RATE[date - 1] / 100;
 
        }
         testSum -= percentAccumulated; /* когда 2022 наступал, мы выходили из цикла внутреннего и не делали вычитание процента изъятия
