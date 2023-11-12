@@ -22,11 +22,12 @@ public class FireCalculator {
         for (int date = input - START_DATE; date < END_DATE - START_DATE; date++) {
             //если 2002 год, то мы не считаем увеличение/уменьшение капитала и в этот год и инфляцию за прошлый, т.к. нет данных из предыдущего года
             if (date == 0) {
-                testSum -= percent;
+                testSum = testSum - percent;
                 continue;
             }
-            testSum -= testSum / initSum * percent;
-            testSum = testSum * (1 + (Constants.MOEX_RATE[date] - Constants.MOEX_RATE[date - 1]) / Constants.MOEX_RATE[date - 1] - Constants.INFLATION_RATE[date - 1] / initSum);
+            testSum = testSum - testSum / initSum * percent;
+            testSum = testSum + testSum * ((Constants.MOEX_RATE[date] - Constants.MOEX_RATE[date - 1]) / Constants.MOEX_RATE[date - 1] -
+                    Constants.INFLATION_RATE[date - 1] / initSum);
         }
         testSum -= percent; /* когда 2022 наступал, мы выходили из цикла внутреннего и не делали вычитание процента изъятия
          (чтобы не умереть с голоду в 22 году)*/
